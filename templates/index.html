@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container text-center mt-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+
+        {% for product in products %}
+        <div class="col mb-5">
+          <div class="card border-0" style="width: 200px; height: 250px;">
+            <a href="{{ url_for('get_product', product_id = product.id) }}">
+                <img src="{{ product.img }}" class="mx-auto py-2" style="width: 150px; height: 170px;">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h6>IDR {{ product.price }}</h6>
+              </div>
+          </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

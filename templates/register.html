@@ -1,0 +1,27 @@
+{% from "bootstrap5/form.html" import render_form %} {% extends "base.html" %} {% block content %}
+
+{% if not current_user.is_authenticated %}
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center" style="height: 40em;">
+        <div class="card d-flex align-items-center justify-content-center" style="width: 25rem; height: 30rem;">
+            <h3><i>Shoopify</i> Sign-<i>oop</i></h3>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <p class="flash text-danger">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('register') }}" method="post">
+                <div class="mb-3">
+                    {{ render_form(form, novalidate=True) }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<h2 class="text-body-tertiary text-center mt-5">You are already registered.</h2>
+{% endif %}
+
+{% endblock %}

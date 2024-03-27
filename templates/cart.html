@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center" style="height: 35em;">
+        <div class="card d-flex py-3 px-3 border-0" style="width: 25rem; height: 30rem;">
+
+            {% if not cart %}
+            <h2 class="text-body-tertiary text-center">Your cart is empty.</h2>
+            <div class="d-inline-flex mx-auto">
+                <a href="/" type="button" class="btn btn-primary mt-3">Start <i>shooping</i></a>
+            </div>
+            {% endif %}
+
+            {% if cart %}
+            {% for item in cart %}
+            <div class="py-2">
+                <img src="{{ item.product.img }}" style="height: 50px; width 50px;">
+            </div>
+            <p class="text-secondary">{{ item.product.name }} x{{ item.quantity }}: IDR {{ item.product.price * item.quantity }}</p>
+            {% endfor %}
+            {% endif %}
+
+            {% if cart %}
+            <div class="d-flex align-items-center justify-content-center mt-3 pb-3">
+                <form action="{{ url_for('create_checkout_session') }}" method="post" class="mx-3">
+                    <input class="btn btn-primary ml-2" type="submit" value="Checkout">
+                </form>
+                <form action="{{ url_for('clear_cart') }}" method="post" class="mx-3">
+                    <input class="btn btn-outline-primary ml-2" type="submit" value="Clear Cart">
+                </form>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
