@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap5
 import stripe
 
-stripe.api_key = "sk_test_51OpUDpJlg66SH4V5Oy3Qk6YXw1Z4mokDs57lILq95KgLguL6JM9Pq5KT7uver004d9t7bxbwzIbAj5hLUuCMU66i00GkAmZFj2"
+stripe.api_key = YOUR_STRIPE_API_KEY
 
 app = Flask(__name__, static_url_path="")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///flask.db"
